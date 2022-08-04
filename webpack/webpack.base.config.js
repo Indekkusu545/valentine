@@ -5,7 +5,7 @@ const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const webpack = require('webpack');
 const isDebug = process.env.NODE_ENV !== 'production';
-const host = '0.0.0.0';
+const host = 'localhost';
 const port = 8080;
 
 const releasePath = path.resolve(__dirname, '../dist');
@@ -19,7 +19,11 @@ const base = {
     chunkFilename: '[name].[chunkhash].chunk.js'
   },
   devServer: {
-    contentBase: [path.join(process.cwd(), './vendor-dev/'), path.join(process.cwd(), './vendor/')],
+    allowedHosts: ['localhost'],
+    contentBase: [
+      path.join(process.cwd(), './vendor-dev/'),
+      path.join(process.cwd(), './vendor/')
+    ],
     hot: true,
     compress: false,
     historyApiFallback: true,
